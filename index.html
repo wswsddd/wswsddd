@@ -3,50 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wang Sen 的 GitHub 个人主页">
-    <title>Wang Sen | GitHub Profile</title>
+    <title>Wang Sen</title>
     <style>
         :root {
             color-scheme: dark;
-            --bg: #08111f;
-            --panel: rgba(11, 20, 35, 0.74);
-            --panel-strong: rgba(16, 31, 52, 0.92);
-            --text: #edf5ff;
-            --muted: #a7b7cb;
+            --bg: #07080d;
+            --text: #f5f7fb;
+            --muted: #8f98aa;
             --line: rgba(255, 255, 255, 0.12);
-            --cyan: #28d7ff;
-            --lime: #a6ff5f;
-            --rose: #ff5d93;
-            --amber: #ffd166;
-            --shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+            --green: #62ff9b;
+            --blue: #48b8ff;
+            --red: #ff416c;
+            --card: rgba(255, 255, 255, 0.07);
         }
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: var(--text);
-            background:
-                radial-gradient(circle at 18% 18%, rgba(40, 215, 255, 0.22), transparent 30%),
-                radial-gradient(circle at 82% 12%, rgba(255, 93, 147, 0.22), transparent 26%),
-                linear-gradient(135deg, #08111f 0%, #101725 42%, #071422 100%);
+            background: var(--bg);
             overflow-x: hidden;
         }
 
         body::before {
             content: "";
             position: fixed;
+            inset: -25%;
+            z-index: -2;
+            background:
+                conic-gradient(from 120deg at 48% 50%, #07080d, #102a33, #251426, #071826, #07080d);
+            animation: spin 18s linear infinite;
+            filter: blur(30px);
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
             inset: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-            background-size: 46px 46px;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), transparent 78%);
+            z-index: -1;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                radial-gradient(circle at 50% 24%, transparent 0 22%, rgba(7, 8, 13, 0.82) 56%, #07080d 100%);
+            background-size: 42px 42px, 42px 42px, auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         a {
@@ -54,521 +68,325 @@
             text-decoration: none;
         }
 
-        .page {
-            width: min(1180px, calc(100% - 40px));
+        .shell {
+            width: min(1120px, calc(100% - 32px));
+            min-height: 100vh;
             margin: 0 auto;
-            padding: 32px 0 56px;
+            padding: 26px 0;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
         }
 
-        .nav {
+        header,
+        footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
-            margin-bottom: 58px;
+            gap: 16px;
+            color: var(--muted);
+            font-size: 14px;
         }
 
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            letter-spacing: 0;
-        }
-
-        .brand-mark {
-            display: grid;
+        .logo {
+            display: inline-grid;
             width: 42px;
             height: 42px;
             place-items: center;
             border: 1px solid var(--line);
             border-radius: 8px;
-            background: linear-gradient(135deg, rgba(40, 215, 255, 0.18), rgba(166, 255, 95, 0.12));
-            box-shadow: 0 0 30px rgba(40, 215, 255, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            font-weight: 900;
         }
 
-        .nav-links {
+        .links {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
             gap: 10px;
         }
 
-        .nav-links a,
-        .button {
+        .links a,
+        .cta {
+            min-height: 42px;
+            padding: 0 15px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 42px;
-            padding: 0 16px;
             border: 1px solid var(--line);
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.055);
-            color: var(--text);
-            font-size: 14px;
-            font-weight: 700;
-            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+            font-weight: 800;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
         }
 
-        .nav-links a:hover,
-        .button:hover {
+        .links a:hover,
+        .cta:hover {
             transform: translateY(-2px);
-            border-color: rgba(40, 215, 255, 0.55);
-            background: rgba(40, 215, 255, 0.11);
+            border-color: rgba(98, 255, 155, 0.58);
+            background: rgba(98, 255, 155, 0.1);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            align-items: center;
+            gap: 38px;
+            padding: 54px 0 44px;
         }
 
         .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-            gap: 28px;
-            align-items: stretch;
+            max-width: 760px;
         }
 
-        .hero-copy {
-            padding: 40px 0 22px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin: 0 0 18px;
-            color: var(--lime);
+        .kicker {
+            margin: 0 0 14px;
+            color: var(--green);
             font-size: 13px;
             font-weight: 900;
             text-transform: uppercase;
         }
 
-        .eyebrow::before {
-            content: "";
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--lime);
-            box-shadow: 0 0 18px var(--lime);
-        }
-
         h1 {
-            max-width: 780px;
             margin: 0;
-            font-size: clamp(48px, 8vw, 108px);
-            line-height: 0.92;
+            font-size: clamp(62px, 12vw, 158px);
+            line-height: 0.82;
             letter-spacing: 0;
         }
 
-        .gradient-text {
+        .name {
+            display: block;
             color: transparent;
-            background: linear-gradient(100deg, var(--cyan), var(--lime) 52%, var(--amber));
+            background: linear-gradient(110deg, #ffffff 0%, var(--blue) 38%, var(--green) 72%, #ffffff 100%);
             -webkit-background-clip: text;
             background-clip: text;
+            text-shadow: 0 0 42px rgba(72, 184, 255, 0.18);
         }
 
-        .intro {
-            max-width: 660px;
-            margin: 26px 0 0;
-            color: var(--muted);
-            font-size: clamp(17px, 2.4vw, 21px);
-            line-height: 1.75;
+        .subtitle {
+            max-width: 540px;
+            margin: 24px 0 0;
+            color: #d7dde8;
+            font-size: clamp(18px, 2vw, 24px);
+            line-height: 1.55;
         }
 
-        .actions {
+        .action-row {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 30px;
         }
 
-        .button.primary {
-            min-height: 48px;
-            border-color: rgba(40, 215, 255, 0.7);
-            background: linear-gradient(135deg, rgba(40, 215, 255, 0.95), rgba(166, 255, 95, 0.86));
-            color: #04111e;
-            box-shadow: 0 15px 40px rgba(40, 215, 255, 0.24);
+        .cta.primary {
+            border-color: transparent;
+            background: var(--text);
+            color: #07080d;
         }
 
-        .terminal {
-            position: relative;
-            min-height: 450px;
+        .panel {
             border: 1px solid var(--line);
             border-radius: 8px;
-            background: linear-gradient(180deg, rgba(12, 24, 41, 0.94), rgba(5, 11, 22, 0.96));
-            box-shadow: var(--shadow);
+            background: var(--card);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.38);
+            backdrop-filter: blur(18px);
             overflow: hidden;
         }
 
-        .terminal::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.03) 50%, transparent 50%),
-                radial-gradient(circle at 50% 0%, rgba(40, 215, 255, 0.13), transparent 42%);
-            background-size: 100% 4px, auto;
-            pointer-events: none;
-        }
-
-        .terminal-top {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            height: 48px;
-            padding: 0 16px;
-            border-bottom: 1px solid var(--line);
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--rose);
-        }
-
-        .dot:nth-child(2) {
-            background: var(--amber);
-        }
-
-        .dot:nth-child(3) {
-            background: var(--lime);
-            margin-right: 8px;
-        }
-
-        .terminal-body {
-            position: relative;
-            padding: 24px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-            font-size: 14px;
-            line-height: 1.85;
-        }
-
-        .line {
-            margin: 0 0 8px;
-            color: #d6e6f8;
-        }
-
-        .prompt {
-            color: var(--lime);
-        }
-
-        .key {
-            color: var(--cyan);
-        }
-
-        .value {
-            color: #ffffff;
-        }
-
-        .comment {
-            color: #7f91a8;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 9px;
-            height: 18px;
-            margin-left: 4px;
-            vertical-align: -3px;
-            background: var(--cyan);
-            animation: blink 1s steps(2, start) infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .section {
-            margin-top: 76px;
-        }
-
-        .section-head {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 18px;
-        }
-
-        h2 {
-            margin: 0;
-            font-size: clamp(28px, 4vw, 44px);
-            letter-spacing: 0;
-        }
-
-        .section-head p {
-            max-width: 430px;
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        .grid {
+        .avatar {
+            min-height: 290px;
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
+            place-items: center;
+            background:
+                radial-gradient(circle at 50% 38%, rgba(98, 255, 155, 0.24), transparent 30%),
+                linear-gradient(145deg, rgba(72, 184, 255, 0.18), rgba(255, 65, 108, 0.13));
         }
 
-        .card {
-            min-height: 210px;
-            padding: 22px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: var(--panel);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(16px);
-            transition: transform 180ms ease, border-color 180ms ease;
+        .avatar span {
+            width: 154px;
+            height: 154px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            background: rgba(7, 8, 13, 0.62);
+            font-size: 54px;
+            font-weight: 950;
+            box-shadow: inset 0 0 34px rgba(255, 255, 255, 0.08), 0 0 60px rgba(72, 184, 255, 0.28);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(166, 255, 95, 0.5);
+        .meta {
+            padding: 20px;
         }
 
-        .card h3 {
-            margin: 0 0 12px;
-            font-size: 20px;
-        }
-
-        .card p {
-            margin: 0;
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 12px 0;
+            border-top: 1px solid var(--line);
             color: var(--muted);
-            line-height: 1.7;
         }
 
-        .tag-list {
+        .meta-row:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .meta-row strong {
+            color: var(--text);
+        }
+
+        .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 18px;
+            margin-top: 28px;
         }
 
         .tag {
-            padding: 8px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.13);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.06);
-            color: #dce8f5;
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 16px;
-            align-items: stretch;
-        }
-
-        .stat-panel {
-            padding: 24px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: var(--panel-strong);
-        }
-
-        .stat-number {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--lime);
-            font-size: 48px;
-            font-weight: 900;
-        }
-
-        .game-row {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-        }
-
-        .game {
-            display: grid;
-            min-height: 78px;
-            place-items: center;
+            padding: 9px 12px;
             border: 1px solid var(--line);
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.055);
-            color: #eaf4ff;
+            color: #e7ecf6;
+            font-size: 13px;
             font-weight: 900;
         }
 
-        footer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+        .strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-top: 72px;
-            padding-top: 24px;
-            border-top: 1px solid var(--line);
+            margin-top: 32px;
+        }
+
+        .tile {
+            min-height: 118px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.055);
+        }
+
+        .tile b {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .tile span {
             color: var(--muted);
-            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer {
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
         }
 
         @media (max-width: 900px) {
-            .hero,
-            .stats {
+            main {
                 grid-template-columns: 1fr;
+                padding-top: 42px;
             }
 
-            .terminal {
-                min-height: 360px;
+            .panel {
+                max-width: 520px;
             }
 
-            .grid {
+            .strip {
                 grid-template-columns: 1fr;
-            }
-
-            .game-row {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        @media (max-width: 620px) {
-            .page {
-                width: min(100% - 24px, 1180px);
-                padding-top: 18px;
+        @media (max-width: 560px) {
+            .shell {
+                width: min(100% - 22px, 1120px);
+                padding-top: 16px;
             }
 
-            .nav,
-            .section-head {
+            header,
+            footer {
                 align-items: flex-start;
                 flex-direction: column;
             }
 
-            .nav-links {
-                justify-content: flex-start;
+            .links {
+                width: 100%;
+                flex-wrap: wrap;
             }
 
-            .hero-copy {
-                padding-top: 24px;
+            .links a,
+            .cta {
+                flex: 1 1 auto;
             }
 
-            .terminal-body {
-                padding: 18px;
-                font-size: 12px;
-            }
-
-            .game-row {
-                grid-template-columns: repeat(2, 1fr);
+            h1 {
+                font-size: clamp(58px, 23vw, 92px);
             }
         }
     </style>
 </head>
 <body>
-    <main class="page">
-        <nav class="nav" aria-label="主导航">
-            <a class="brand" href="#">
-                <span class="brand-mark">WS</span>
-                <span>Wang Sen</span>
-            </a>
-            <div class="nav-links">
-                <a href="#projects">Projects</a>
-                <a href="#stack">Stack</a>
+    <div class="shell">
+        <header>
+            <a class="logo" href="#">WS</a>
+            <nav class="links" aria-label="links">
                 <a href="https://github.com/wswsddd" target="_blank" rel="noreferrer">GitHub</a>
-            </div>
-        </nav>
+                <a href="#work">Work</a>
+            </nav>
+        </header>
 
-        <section class="hero">
-            <div class="hero-copy">
-                <p class="eyebrow">GitHub Personal Homepage</p>
-                <h1>Hi, I'm <span class="gradient-text">Wang Sen</span>.</h1>
-                <p class="intro">
-                    我喜欢把有趣的想法做成可运行的作品，也享受游戏里的策略、协作和临场判断。
-                    这里是我的个人主页，记录代码、项目、技能栈和正在探索的方向。
-                </p>
-                <div class="actions">
-                    <a class="button primary" href="https://github.com/wswsddd" target="_blank" rel="noreferrer">View GitHub</a>
-                    <a class="button" href="#projects">Explore Projects</a>
-                </div>
-            </div>
+        <main>
+            <section class="hero" aria-label="intro">
+                <p class="kicker">github.io / personal page</p>
+                <h1><span>Wang</span><span class="name">Sen</span></h1>
+                <p class="subtitle">Code. Games. Shipping small things that work.</p>
 
-            <aside class="terminal" aria-label="个人信息终端">
-                <div class="terminal-top">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span>profile.sh</span>
+                <div class="action-row">
+                    <a class="cta primary" href="https://github.com/wswsddd" target="_blank" rel="noreferrer">Open GitHub</a>
+                    <a class="cta" href="#work">View Work</a>
                 </div>
-                <div class="terminal-body">
-                    <p class="line"><span class="prompt">$</span> whoami</p>
-                    <p class="line"><span class="value">Wang Sen</span> <span class="comment"># developer / gamer / builder</span></p>
-                    <p class="line"><span class="prompt">$</span> cat focus.json</p>
-                    <p class="line">{</p>
-                    <p class="line">&nbsp;&nbsp;<span class="key">"code"</span>: <span class="value">"Web, Tools, Open Source"</span>,</p>
-                    <p class="line">&nbsp;&nbsp;<span class="key">"games"</span>: <span class="value">"LOL, DOTA, CSGO, PUBG, CF, WOW"</span>,</p>
-                    <p class="line">&nbsp;&nbsp;<span class="key">"mode"</span>: <span class="value">"Keep learning. Keep shipping."</span></p>
-                    <p class="line">}</p>
-                    <p class="line"><span class="prompt">$</span> deploy --target github-pages<span class="cursor"></span></p>
+
+                <div class="tags" aria-label="tags">
+                    <span class="tag">Web</span>
+                    <span class="tag">Tools</span>
+                    <span class="tag">LOL</span>
+                    <span class="tag">DOTA</span>
+                    <span class="tag">CSGO</span>
+                    <span class="tag">PUBG</span>
+                    <span class="tag">WOW</span>
+                </div>
+
+                <div class="strip" id="work">
+                    <div class="tile">
+                        <b>01</b>
+                        <span>Portfolio</span>
+                    </div>
+                    <div class="tile">
+                        <b>02</b>
+                        <span>Game notes</span>
+                    </div>
+                    <div class="tile">
+                        <b>03</b>
+                        <span>Open source</span>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="panel" aria-label="profile card">
+                <div class="avatar"><span>WS</span></div>
+                <div class="meta">
+                    <div class="meta-row"><span>Name</span><strong>Wang Sen</strong></div>
+                    <div class="meta-row"><span>GitHub</span><strong>@wswsddd</strong></div>
+                    <div class="meta-row"><span>Status</span><strong>Online</strong></div>
                 </div>
             </aside>
-        </section>
-
-        <section class="section" id="projects">
-            <div class="section-head">
-                <h2>Featured Work</h2>
-                <p>把这里替换成你的真实仓库、项目截图或在线 Demo，就能从“好看”变成“有说服力”。</p>
-            </div>
-            <div class="grid">
-                <article class="card">
-                    <h3>Portfolio Site</h3>
-                    <p>一个响应式个人主页，用于展示 GitHub、项目经历、技术栈和个人兴趣。</p>
-                    <div class="tag-list">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">GitHub Pages</span>
-                    </div>
-                </article>
-                <article class="card">
-                    <h3>Game Toolkit</h3>
-                    <p>可以放置战绩分析、装备查询、对局笔记或你正在开发的游戏相关工具。</p>
-                    <div class="tag-list">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Data</span>
-                        <span class="tag">UI</span>
-                    </div>
-                </article>
-                <article class="card">
-                    <h3>Open Source Notes</h3>
-                    <p>记录学习路线、源码阅读、问题复盘和你希望长期维护的技术内容。</p>
-                    <div class="tag-list">
-                        <span class="tag">Docs</span>
-                        <span class="tag">Markdown</span>
-                        <span class="tag">Learning</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" id="stack">
-            <div class="section-head">
-                <h2>Stack & Play</h2>
-                <p>主页不只要炫，还要让别人快速知道你会什么、关注什么、适合做什么。</p>
-            </div>
-            <div class="stats">
-                <div class="stat-panel">
-                    <span class="stat-number">01</span>
-                    <strong>Build in public</strong>
-                    <p class="intro">持续把项目、笔记和实验提交到 GitHub，让主页成为你的长期作品集入口。</p>
-                </div>
-                <div class="stat-panel">
-                    <div class="game-row" aria-label="喜欢的游戏">
-                        <span class="game">LOL</span>
-                        <span class="game">DOTA</span>
-                        <span class="game">CSGO</span>
-                        <span class="game">PUBG</span>
-                        <span class="game">CF</span>
-                        <span class="game">WOW</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </main>
 
         <footer>
-            <span>© 2026 Wang Sen</span>
-            <span>Designed for GitHub Pages</span>
+            <span>Wang Sen</span>
+            <span>Built for GitHub Pages</span>
         </footer>
-    </main>
+    </div>
 </body>
 </html>
